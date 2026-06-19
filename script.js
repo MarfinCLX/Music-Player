@@ -1,3 +1,18 @@
+let isUserScrolling = false;
+let scrollTimeout;
+
+// Отслеживаем скролл пользователя, чтобы не вырывать экран
+function handleUserScroll() {
+    isUserScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        isUserScrolling = false;
+    }, 3000);
+}
+
+window.addEventListener('wheel', handleUserScroll);
+window.addEventListener('touchmove', handleUserScroll);
+
 const canvas = document.getElementById('visualizer');
 const ctx = canvas.getContext('2d');
 
@@ -12,96 +27,76 @@ let animation;
 function initVisualizer() {
     if(audioCtx) return;
 
-    audioCtx = new AudioContext();
-
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const source = audioCtx.createMediaElementSource(audio);
-
     analyser = audioCtx.createAnalyser();
 
     analyser.fftSize = 256;
-    analyser.smoothingTimeConstant = 0.72;
+    analyser.smoothingTimeConstant = 0.75;
 
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
 
     data = new Uint8Array(analyser.frequencyBinCount);
-
-    /* drawVisualizer(); */
 }
 
-function draw(){
+function draw() {
+    animation = requestAnimationFrame(draw);
 
-animation =
-requestAnimationFrame(draw);
+    if(!analyser) {
+        return;
+    }
+    analyser.getByteFrequencyData(data);
 
-if(!analyser) {
-return;
-}
-analyser.getByteFrequencyData(data);
+    ctx.clearRect(0, 0, 500, 500);
 
-ctx.clearRect(0, 0, 500, 500);
+    const cx = 250;
+    const cy = 250;
 
-const cx = 250;
-const cy = 250;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 120, 0, Math.PI * 2);
 
+    const glow = ctx.createRadialGradient(cx, cy, 30, cx, cy, 180);
+    glow.addColorStop(0, 'rgba(255,0,80,.12)');
+    glow.addColorStop(1, 'rgba(255,0,80,0)');
 
-ctx.beginPath();
+    ctx.fillStyle = glow;
+    ctx.fill();
 
-ctx.arc(cx, cy, 120, 0, Math.PI * 2);
+    ctx.beginPath();
+    ctx.arc(cx, cy, 100, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(10,10,10,.65)';
+    ctx.fill();
 
-const glow =
-ctx.createRadialGradient(cx, cy, 30, cx, cy, 180);
+    ctx.beginPath();
+    let prevWave = 0;
 
-glow.addColorStop(0, 'rgba(255,0,80,.12)');
+    for(let i = 0; i <= 80; i++) {
+        const index = Math.floor(i * data.length / 80);
+        const angle = (i / 80) * Math.PI * 2 + performance.now() * 0.00015;
+        const rawWave = Math.min(Math.pow((data[index] || 0) / 255, 1.1) * 150, 70);
+        const smoothWave = prevWave * 0.3 + rawWave * 0.7;
+        prevWave = smoothWave;
 
-glow.addColorStop(1, 'rgba(255,0,80,0)');
+        const side = 0.75 + Math.pow(Math.cos(angle), 2) * 0.45;
+        const pulse = Math.sin(performance.now() * 0.003) * 5;
+        const radius = 145 + smoothWave * side + pulse;
 
-ctx.fillStyle = glow;
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
 
-ctx.fill();
+        if(i === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    }
 
-ctx.beginPath();
-
-ctx.arc(cx, cy, 90, 0, Math.PI * 2);
-
-ctx.fillStyle = 'rgba(10,10,10,.65)';
-
-ctx.fill();
-
-ctx.beginPath();
-
-for( let i=0; i<80; i++) {
-
-const angle = (i/80) * Math.PI * 2;
-
-const wave = data[i] * 0.45;
-
-const side = Math.pow(Math.sin(angle), 2);
-
-const radius = 140 + wave * side;
-
-const x = cx + Math.cos(angle) * radius;
-
-const y = cy + Math.sin(angle) * radius;
-
-if(i === 0) {
-ctx.moveTo(x, y);
-} else {
-ctx.lineTo(x, y);
-}
-}
-
-ctx.closePath();
-
-ctx.strokeStyle =
-'rgba(255,80,140,.65)';
-
-ctx.shadowBlur = 30;
-
-ctx.lineWidth = 3;
-
-ctx.stroke();
-
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(255,80,140,.65)';
+    ctx.lineWidth = 2;
+    ctx.shadowBlur = 55;
+    ctx.stroke();
 }
 
 const lines = document.querySelectorAll('.lyrics-line');
@@ -118,40 +113,35 @@ audio.addEventListener('pause', () => {
     ctx.clearRect(0, 0, 500, 500);
     lines.forEach(line => line.classList.remove('active'));
     document.body.classList.remove('bg-playing');
-    /* document.body.classList.remove('bg-prechorus');
-    document.body.classList.remove('bg-chorus'); */
 });
 
 audio.addEventListener('timeupdate', () => {
     if (audio.paused) return;
     const time = audio.currentTime;
 
-    if (time < 36) {
-        document.body.classList.remove('bg-prechorus');
-        document.body.classList.remove('bg-chorus');
-    } else if (time >= 36 && time < 51) {
-        document.body.classList.add('bg-prechorus');
-        document.body.classList.remove('bg-chorus');
-    } else if (time >= 51 && time < 68.4) {
-        document.body.classList.remove('bg-prechorus');
-        document.body.classList.add('bg-chorus');
+    let currentLine = null;
+
+    // 1. Сначала ищем нужную строку
+    lines.forEach(line => {
+        const start = parseFloat(line.getAttribute('data-start'));
+        if (time >= start) {
+            currentLine = line;
+        }
+    });
+
+    // 2. Снимаем выделение со всех строк
+    lines.forEach(line => line.classList.remove('active'));
+
+    // 3. Выделяем текущую и скроллим
+    if (currentLine) {
+        currentLine.classList.add('active');
+
+        // Скроллим только если пользователь не трогал экран последние 3 секунды
+        if (!isUserScrolling) {
+            currentLine.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
     }
-
-let currentLine = null;
-
-lines.forEach(line => {
-const start = parseFloat(line.getAttribute('data-start'));
-const end = parseFloat(line.getAttribute('data-end'))
-
-if (time >= start) {
-    currentLine = line;
-}
-});
-
-lines.forEach(line => line.classList.remove('active'));
-
-if (currentLine) {
-    currentLine.classList.add('active');
-}
-
 });

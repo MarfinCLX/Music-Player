@@ -76,3 +76,12 @@ text-shadow: rgba(29, 107, 223, 0.5);
 a {
     text-decoration: none;
 }
+
+canvas {
+    width: 450px;
+    height: 450px;
+}
+
+#lyrics {
+    scroll-behavior: smooth;
+}
