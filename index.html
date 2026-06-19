@@ -7,24 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="visualizer"></canvas>
     <header>
+        <div class="header-container">
         <h2 class="brand">MARFIN</h2>
+        <div class="navigation-container">
        <nav>
             <a href="#player">Player</a>
             <a href="#lyrics">Lyrics</a>
             <a href="#about">About</a>
         </nav>
+        </div>
         <div class="page">
-        <img src="vina.tdd.png" alt="Cover art for Вина (Fault) by Три дня дождя (TDD)">
+        <img src="images/tdd_i_hate_being_me.png" alt="Cover art for Ненавижу быть собой (I Hate Being Me) by Три дня дождя (TDD)">
         <div class="song-info">
-            <h1>Вина (Fault)</h1>
+            <h1>Ненавижу быть собой (I Hate Being Me)</h1>
             <p>Три дня дождя (TDD)</p>
+        </div>
         </div>
     </header>
     <main>
         <section id="player">
             <h2>Проигрыватель</h2>
-            <audio controls>
+            <audio controls id="audio">
                 <source src="music/ya_nenavizhy_bit_soboy_tdd.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
@@ -33,54 +38,54 @@
             <h2>[Текст песни Три дня дождя (TDD) « Ненавижу быть собой (I Hate Being Me)»] </h2>
             <br>
      <p>[Куплет 1] </p>
-    <p class="lyrics-line" data-start="5.0">Меня уязвило, что ты</p>
-    <p class="lyrics-line" data-start="9.0">Порой не остаёшься собой</p>
-    <p class="lyrics-line" data-start="12.9">Я не боюсь высоты</p>
-    <p class="lyrics-line" data-start="16.4">До тех пор, пока ты рядом со мной</p>
-    <p class="lyrics-line" data-start="20.8">Седые волосы, плохой парфюм</p>
-    <p class="lyrics-line" data-start="24.9">Уныние в голосе, я тону</p>
-    <p class="lyrics-line" data-start="28.9">Оставь хотя бы чёрный кардиган</p>
-    <p class="lyrics-line" data-start="33.0">Который мне так нравился, когда был пьян</p>
+    <p class="lyrics-line" data-start="4.4">Меня уязвило, что ты</p>
+    <p class="lyrics-line" data-start="8.7">Порой не остаёшься собой</p>
+    <p class="lyrics-line" data-start="12.17">Я не боюсь высоты</p>
+    <p class="lyrics-line" data-start="15.4">До тех пор, пока ты рядом со мной</p>
+    <p class="lyrics-line" data-start="20.2">Седые волосы, плохой парфюм</p>
+    <p class="lyrics-line" data-start="24.2">Уныние в голосе, я тону</p>
+    <p class="lyrics-line" data-start="28.2">Оставь хотя бы чёрный кардиган</p>
+    <p class="lyrics-line" data-start="32.4">Который мне так нравился, когда был пьян</p>
     <br>
      <p>[Предприпев]</p>
-    <p class="lyrics-line" data-start="36.2">Вспоминаю запах женщин, которых любил</p>
-    <p class="lyrics-line" data-start="39.5">Между нами было всё, что только можно вообразить</p>
-    <p class="lyrics-line" data-start="43.6">За стенами было слышно, как мы ссорились без сил</p>
-    <p class="lyrics-line" data-start="47.3">В те моменты я жалел, что неспособен быть один</p>
+    <p class="lyrics-line" data-start="35.7">Вспоминаю запах женщин, которых любил</p>
+    <p class="lyrics-line" data-start="39">Между нами было всё, что только можно вообразить</p>
+    <p class="lyrics-line" data-start="43">За стенами было слышно, как мы ссорились без сил</p>
+    <p class="lyrics-line" data-start="47">В те моменты я жалел, что неспособен быть один</p>
     <br>
      <p>[Припев]</p>
-    <p class="lyrics-line" data-start="51.5">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="55.3">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="59.2">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="63.5">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="51.4">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="55.2">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="59.1">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="63.4">Ненавижу быть собой</p>
     <br>
      <p>[Куплет 2]</p>
-    <p class="lyrics-line" data-start="68.7">Я слил всё, что было внутри</p>
-    <p class="lyrics-line" data-start="72.6">Прости, но это сильно болит</p>
-    <p class="lyrics-line" data-start="76.4">Следы помады на зеркалах</p>
-    <p class="lyrics-line" data-start="80.3">Прости, что я порой бываю вовсе невыносим</p>
-    <p class="lyrics-line" data-start="84.5">Я буду ждать тех сообщений от знакомых номеров</p>
-    <p class="lyrics-line" data-start="88.7">Я не люблю ложных значений, я к такому не готов</p>
-    <p class="lyrics-line" data-start="92.9">Оставь хотя бы чёрный кардиган</p>
-    <p class="lyrics-line" data-start="96.9">Который мне так нравился, когда был пьян</p>
+    <p class="lyrics-line" data-start="68.2">Я слил всё, что было внутри</p>
+    <p class="lyrics-line" data-start="72.2">Прости, но это сильно болит</p>
+    <p class="lyrics-line" data-start="76.15">Следы помады на зеркалах</p>
+    <p class="lyrics-line" data-start="80.1">Прости, что я порой бываю вовсе невыносим</p>
+    <p class="lyrics-line" data-start="84.1">Я буду ждать тех сообщений от знакомых номеров</p>
+    <p class="lyrics-line" data-start="88.47">Я не люблю ложных значений, я к такому не готов</p>
+    <p class="lyrics-line" data-start="92.5">Оставь хотя бы чёрный кардиган</p>
+    <p class="lyrics-line" data-start="96.6">Который мне так нравился, когда был пьян</p>
     <br>
      <p>[Предприпев]</p>
-    <p class="lyrics-line" data-start="100.0">Вспоминаю запах женщин, которых любил</p>
-    <p class="lyrics-line" data-start="103.5">Между нами было всё, что только можно вообразить</p>
-    <p class="lyrics-line" data-start="107.6">За стенами было слышно, как мы ссорились без сил</p>
-    <p class="lyrics-line" data-start="111.4">В те моменты я жалел, что неспособен быть один</p>
+    <p class="lyrics-line" data-start="99.8">Вспоминаю запах женщин, которых любил</p>
+    <p class="lyrics-line" data-start="103.38">Между нами было всё, что только можно вообразить</p>
+    <p class="lyrics-line" data-start="107.398">За стенами было слышно, как мы ссорились без сил</p>
+    <p class="lyrics-line" data-start="111.265">В те моменты я жалел, что неспособен быть один</p>
     <br>
      <p>[Припев]</p>
-    <p class="lyrics-line" data-start="115.5">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="119.6">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="123.5">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="127.5">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="115.38">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="119.41">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="123.35">Ненавижу быть собой</p>
+    <p class="lyrics-line" data-start="127.35">Ненавижу быть собой</p>
     <br>
      <p>[Аутро]</p>
-    <p class="lyrics-line" data-start="164.0">Вспоминаю запах женщин, которых любил</p>
-    <p class="lyrics-line" data-start="167.5">Между нами было всё, что только можно вообразить</p>
-    <p class="lyrics-line" data-start="171.4">За стенами было слышно, как мы ссорились без сил</p>
-    <p class="lyrics-line" data-start="175.3">В те моменты я жалел, что неспособен быть один</p>
+    <p class="lyrics-line" data-start="163.9">Вспоминаю запах женщин, которых любил</p>
+    <p class="lyrics-line" data-start="167.45">Между нами было всё, что только можно вообразить</p>
+    <p class="lyrics-line" data-start="171.2">За стенами было слышно, как мы ссорились без сил</p>
+    <p class="lyrics-line" data-start="175.2">В те моменты я жалел, что неспособен быть один</p>
                 </div>
                 <button id="toggle-lyrics">Показать больше</button>
         </section>

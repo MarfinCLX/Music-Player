@@ -1,6 +1,6 @@
- "Vina" - Single-Track Music Player
+ "Ненавижу быть собой (I Hate Being Me)" - Single-Track Music Player
 
-A sleek, atmospheric, minimalist web audio player dedicated to the track "Вина" (Guilt) by Три Дня Дождя (Three Days of Rain). This project is built as part of the JavaScript Foundations learning journey to master the HTML5 Audio API, DOM manipulation, and asynchronous event handling.
+A sleek, atmospheric, minimalist web audio player dedicated to the track "Ненавижу быть собой (I Hate Being Me) by Три Дня Дождя (Three Days of Rain). This project is built as part of the JavaScript Foundations learning journey to master the HTML5 Audio API, DOM manipulation, and asynchronous event handling.
 
 🎧 About the Project
 Instead of building a generic, boring music player, this project focuses on creating a dedicated, high-fidelity user experience for a single iconic rock/grunge track. The visual style reflects the dark, emotional, and raw energy of the song.
@@ -22,7 +22,7 @@ bash
 music-player/
 ├── index.html   # Semantic structure and audio elements
 ├── style.css    # Dark-themed UI and layouts
-├── app.js       # Core audio engine and interactive logic
+├── script.js       # Core audio engine and interactive logic
 └── README.md    # Project documentation
 
 Made by: MarfinCLX

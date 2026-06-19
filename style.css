@@ -24,7 +24,7 @@ height: 400px;
 border-radius: 50%;
 background: radial-gradient(circle, rgba(255, 0, 0, 0) 40%, rgba(255, 0, 0, 0.8) 60%, rgba(0, 0, 0, 0) 80%);
 opacity: 0;
-transition: opacity 0.5s ease; 
+transition: opacity 0.65s ease; 
 }
 
 body.bg-playing {
@@ -32,98 +32,22 @@ background-color: #000000;
 color: #ffffff;
 }
 
-body::before {
-    content: '';
-    z-index: -2;
-    pointer-events: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 0, 60, 0.5) 0%, rgba(0, 0, 0, 0) 70%);
-    opacity: 0;
-    transition: all 1s ease;
+#visualizer {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 500px;
+height: 500px;
+pointer-events: none;
+z-index: -2;
+opacity: 0;
+transition: opacity 1.8s ease;
+filter: blur(5px);
 }
 
-body.bg-playing::before {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    animation: breathe 4s infinite ease-in-out;
-}
-
-@keyframes breathe {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.5;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.15);
-        opacity: 0.8;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.5;
-    }
-}
-
-
-body.bg-prechorus::before {
-    animation: vibrate 0.1s infinite;
-    opacity: 0.7;
-}
-
-@keyframes vibrate {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    20% {
-        transform: translate(-52%, -49%) scale(1.02);
-    }
-    40% {
-        transform: translate(-48%, -51%) scale(0.98);
-    }
-    60% {
-        transform: translate(-51%, -48%) scale(1.01);
-    }
-    80% {
-        transform: translate(-49%, -52%) scale(0.99);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-body.bg-chorus::before {
-    background: radial-gradient(circle, rgba(255, 0, 60, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
-    animation: explosion 0.15s infinite;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.5);
-    transition: all 0.5s ease;
-}
-
-@keyframes explosion {
- 0% {
-        transform: translate(-50%, -50%) scale(1.7);
-    }
-    20% {
-        transform: translate(-53%, -47%) scale(1.74);
-    }
-    40% {
-        transform: translate(-48%, -52%) scale(1.69);
-    }
-    60% {
-        transform: translate(-52%, -47%) scale(1.72);
-    }
-    80% {
-        transform: translate(-48%, -54%) scale(1.8);
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1.7);
-    }
+body.bg-playing #visualizer {
+opacity: 0.7;
 }
 
 .lyrics-line {
@@ -137,4 +61,18 @@ opacity: 1;
 transform: scale(1.1);
 color: #f3e8eb;
 text-shadow: 0 0 10px rgba(255, 0, 60, 0.7);
+}
+
+.header-container {
+    display: flex;
+}
+
+.brand {
+font-size: 44px;
+color: rgba(20, 211, 211, 0.932);
+text-shadow: rgba(29, 107, 223, 0.5);
+}
+
+a {
+    text-decoration: none;
 }
