@@ -189,11 +189,55 @@ img {
     scroll-behavior: smooth;
 }
 
+.lyrics-heading {
+    text-align: center;
+}
+
 .lyrics-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.about-song {
+    background-color: #141416;
+    color: #ffffff;
+    padding: 60px 20px;
+    margin-top: 40px;
+    border-top:  2px solid rgba(185, 185, 185, 0.87); 
+    border-bottom:  2px solid rgba(185, 185, 185, 0.87); ;
+}
+
+.about-song-container {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.about-song-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    color: #ff0055;
+    text-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+}
+
+.about-song-subtitle {
+    font-size: 14px;
+    color: #777777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.about-song-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #e0e0e0;
+    margin-bottom: 20px;
 }
 
 footer {
