@@ -7,7 +7,7 @@ function handleUserScroll() {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
         isUserScrolling = false;
-    }, 3000);
+    }, 4500);
 }
 
 window.addEventListener('wheel', handleUserScroll);
@@ -121,7 +121,6 @@ audio.addEventListener('timeupdate', () => {
 
     let currentLine = null;
 
-    // 1. Сначала ищем нужную строку
     lines.forEach(line => {
         const start = parseFloat(line.getAttribute('data-start'));
         if (time >= start) {
@@ -129,14 +128,11 @@ audio.addEventListener('timeupdate', () => {
         }
     });
 
-    // 2. Снимаем выделение со всех строк
     lines.forEach(line => line.classList.remove('active'));
 
-    // 3. Выделяем текущую и скроллим
     if (currentLine) {
         currentLine.classList.add('active');
 
-        // Скроллим только если пользователь не трогал экран последние 3 секунды
         if (!isUserScrolling) {
             currentLine.scrollIntoView({
                 behavior: 'smooth',
