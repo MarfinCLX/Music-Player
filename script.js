@@ -43,7 +43,7 @@ function initVisualizer() {
 function draw() {
     animation = requestAnimationFrame(draw);
 
-    if(!analyser) {
+    if (!analyser) {
         return;
     }
     analyser.getByteFrequencyData(data);
@@ -141,3 +141,25 @@ audio.addEventListener('timeupdate', () => {
         }
     }
 });
+
+function initNeonBorders() {
+    const aboutSection = document.querySelector('.about-song');
+    const path1 = document.querySelector('.about-song-neon-path.path-1');
+    const path2 = document.querySelector('.about-song-neon-path.path-2');
+
+    if (!aboutSection || !path1 || !path2) {
+        return;
+    }
+
+    const width = aboutSection.offsetWidth;
+    const height = aboutSection.offsetHeight;
+    const halfPerimeter = width +  height;
+
+    path1.setAttribute('d', `M 0 0 H ${width} V ${height}`);
+    path2.setAttribute('d', `M ${width} ${height} H 0 V 0`);
+
+    aboutSection.style.setProperty('--path-length', halfPerimeter + 'px');
+}
+
+window.addEventListener('resize', initNeonBorders);
+initNeonBorders();
