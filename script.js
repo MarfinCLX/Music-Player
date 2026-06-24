@@ -1,28 +1,39 @@
-let isUserScrolling = false;
-let scrollTimeout;
-
-// Отслеживаем скролл пользователя, чтобы не вырывать экран
-function handleUserScroll() {
-    isUserScrolling = true;
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-        isUserScrolling = false;
-    }, 4500);
-}
-
-window.addEventListener('wheel', handleUserScroll);
-window.addEventListener('touchmove', handleUserScroll);
-
+const lines = document.querySelectorAll('.lyrics-line');
+const audio = document.querySelector('audio');
 const canvas = document.getElementById('visualizer');
 const ctx = canvas.getContext('2d');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const iconPlay = document.getElementById('icon-play');
+const iconPause = document.getElementById('icon-pause');
+const progressBar = document.getElementById('progress-bar');
+const progressFilled = document.getElementById('progress-filled');
+const timeCurrent = document.getElementById('time-current');
+const timeTotal = document.getElementById('time-total');
 
-canvas.width = 500;
-canvas.height = 500;
-
+let isUserScrolling = false;
+let scrollTimeout;
 let audioCtx;
 let analyser;
 let data;
 let animation;
+
+canvas.width = 500;
+canvas.height = 500;
+
+function formatTime(seconds) {
+    if (isNaN(seconds)) return "00:00"; 
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+audio.addEventListener('loadedmetadata', () => {
+timeTotal.textContent = formatTime(audio.duration);
+});
+
+if (audio.readyState >= 1) {
+    timeTotal.textContent = formatTime(audio.duration);
+}
 
 function initVisualizer() {
     if(audioCtx) return;
@@ -99,12 +110,11 @@ function draw() {
     ctx.stroke();
 }
 
-const lines = document.querySelectorAll('.lyrics-line');
-const audio = document.querySelector('audio');
-
 audio.addEventListener('play', () => {
     document.body.classList.add('bg-playing');
-    initVisualizer();
+    iconPlay.style.display = 'none';
+    iconPause.style.display = 'block';
+     initVisualizer();
     draw();
 });
 
@@ -113,11 +123,20 @@ audio.addEventListener('pause', () => {
     ctx.clearRect(0, 0, 500, 500);
     lines.forEach(line => line.classList.remove('active'));
     document.body.classList.remove('bg-playing');
+    iconPlay.style.display = 'block';
+    iconPause.style.display = 'none';
 });
 
 audio.addEventListener('timeupdate', () => {
-    if (audio.paused) return;
     const time = audio.currentTime;
+
+    if (audio.duration) {
+        const percentage = (time / audio.duration) * 100;
+        progressFilled.style.width = `${percentage}%`;
+        timeCurrent.textContent = formatTime(time);
+    }
+
+    if (audio.paused) return;
 
     let currentLine = null;
 
@@ -141,6 +160,39 @@ audio.addEventListener('timeupdate', () => {
         }
     }
 });
+
+audio.addEventListener('loadedmetadata', () => {
+    timeTotal.textContent = formatTime(audio.duration);
+});
+
+playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+});
+
+progressBar.addEventListener('click', (e) => {
+    if (!audio.duration) return;
+    const rect = progressBar.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    const clickPercentage = clickX / width;
+
+    audio.currentTime = clickPercentage * audio.duration;
+});
+
+function handleUserScroll() {
+    isUserScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        isUserScrolling = false;
+    }, 7500);
+}
+
+window.addEventListener('wheel', handleUserScroll);
+window.addEventListener('touchmove', handleUserScroll);
 
 function initNeonBorders() {
     const aboutSection = document.querySelector('.about-song');

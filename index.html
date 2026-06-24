@@ -38,6 +38,39 @@
                 <source src="music/ya_nenavizhy_bit_soboy_tdd.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            <div class="player-frame">
+            <div class="custom-player">
+                <div class="tech-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="player-controls">
+                    <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause">
+                        <svg id="icon-play" viewBox="0 0 24 24" width="24" height="24"> 
+                            <path d="M8 5v14l11-7z" fill="#ff0055"/>
+                        </svg> 
+                        <svg id="icon-pause" viewBox="0 0 24 24" width="24" height="24" style="display: none;">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="#ff0055"/>
+                        </svg>
+                    </button>
+            </div>
+            <div class="timeline-container">
+                <span class="time-display time-current" id="time-current">00:00</span>
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-filled" id="progress-filled"></div>
+                </div>
+                <span class="time-display time-total" id="time-total">00:00</span>
+                <div class="micro-equalizer">
+                    <span class="eq-bar" style="--h: 8px;"></span>
+                    <span class="eq-bar" style="--h: 12px;"></span>
+                    <span class="eq-bar" style="--h: 16px;"></span>
+                    <span class="eq-bar" style="--h: 20px;"></span>
+                </div>
+            </div>
+            </div>
+            </div>
             <div class="release-date">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days-icon lucide-calendar-days">
                 <path d="M8 2v4"/>
