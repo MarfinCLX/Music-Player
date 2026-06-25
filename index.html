@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> TDD-i-hate-being-me-music-player</title>
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <canvas id="visualizer"></canvas>
@@ -16,6 +16,26 @@
        <nav>
             <a href="#lyrics">Lyrics</a>
             <a href="#about">About</a>
+        <div class="header-menu-container">
+           <button id="tracklist-toggle" class="cyber-btn-tracks">
+            <svg class="cyber-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <rect x="3" y="5" width="2" height="2" fill="currentColor" stroke="none"></rect>
+                <rect x="3" y="11" width="2" height="2" fill="currentColor" stroke="none"></rect>
+                <rect x="3" y="17" width="2" height="2" fill="currentColor" stroke="none"></rect>
+            </svg>
+            <span class="btn-text">TRACKS</span>
+            </button>
+            <div id="tracklist-dropdown" class="cyber-dropdown">
+                <div class="dropdown-header">//SELECT_TRACK_CORE</div>
+                <ul class="tracks-vector-list">
+                    <li class="track-item active">Ненавижу быть собой</li>
+                    <li class="track-item-lock">Заперто // Скоро...</li>
+                </ul>
+        </div>
+        </div>
         </nav>
         </div>
         </div>

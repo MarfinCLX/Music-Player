@@ -10,6 +10,8 @@ const progressBar = document.getElementById('progress-bar');
 const progressFilled = document.getElementById('progress-filled');
 const timeCurrent = document.getElementById('time-current');
 const timeTotal = document.getElementById('time-total');
+const tracklistBtn = document.getElementById('tracklist-toggle');
+const tracklistDropdown = document.getElementById('tracklist-dropdown');
 
 let isUserScrolling = false;
 let scrollTimeout;
@@ -200,24 +202,27 @@ function initNeonBorders() {
     const path1 = document.querySelector('.about-song-neon-path.path-1');
     const path2 = document.querySelector('.about-song-neon-path.path-2');
 
-    if (!aboutSection || !path1 || !path2) {
+    if (!aboutSection || !path1 || !path2 ) {
         return;
     }
 
     const width = aboutSection.offsetWidth;
     const height = aboutSection.offsetHeight;
     const halfPerimeter = width +  height;
+    const pathA = `M 0 0 H ${width} V ${height}`;
+    const pathB = `M ${width} ${height} H 0 V 0`;
 
-    path1.setAttribute('d', `M 0 0 H ${width} V ${height}`);
-    path2.setAttribute('d', `M ${width} ${height} H 0 V 0`);
+    path1.setAttribute('d', pathA);
+    path2.setAttribute('d', pathB);
 
     aboutSection.style.setProperty('--path-length', halfPerimeter + 'px');
-}
+
+    }
 
 window.addEventListener('resize', initNeonBorders);
 initNeonBorders();
 
-audio.volume = 0.8;
+audio.volume = 0.6;
 
 volBars.forEach( bar => {
     bar.addEventListener('click', (e) => {
@@ -234,4 +239,15 @@ volBars.forEach( bar => {
                 }
         });
     });
+});
+
+tracklistBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    tracklistDropdown.classList.toggle('open');
+});
+
+document.addEventListener('clicl', (e) => {
+    if (!tracklistDropdown.contains(e.target) && e.target !== tracklistBtn) {
+        tracklistDropdown.classList.remove('open');
+    }
 });
