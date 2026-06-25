@@ -1,4 +1,5 @@
 const lines = document.querySelectorAll('.lyrics-line');
+const volBars = document.querySelectorAll('.vol-bar');
 const audio = document.querySelector('audio');
 const canvas = document.getElementById('visualizer');
 const ctx = canvas.getContext('2d');
@@ -215,3 +216,22 @@ function initNeonBorders() {
 
 window.addEventListener('resize', initNeonBorders);
 initNeonBorders();
+
+audio.volume = 0.8;
+
+volBars.forEach( bar => {
+    bar.addEventListener('click', (e) => {
+        const clickedLevel = parseFloat(e.target.getAttribute('data-level'));
+
+        audio.volume = clickedLevel;
+
+        volBars.forEach(b => {
+            const barLevel = parseFloat(b.getAttribute('data-level'));
+                if ( barLevel <= clickedLevel) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+        });
+    });
+});

@@ -528,3 +528,43 @@ body.bg-playing .eq-bar:nth-child(5) { animation-delay: 0.4s; }
     0% { transform: scaleY(0.4); }
     100% { transform: scaleY(1.4); }
 }
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+.volume-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.volume-steps {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.vol-bar {
+    width: 3px;
+    background: rgba(255, 0, 85, 0.2);
+transition: all 0.2s ease;
+}
+
+.vol-bar:nth-child(1) { height: 4px; }
+.vol-bar:nth-child(2) { height: 7px; }
+.vol-bar:nth-child(3) { height: 10px; }
+.vol-bar:nth-child(4) { height: 13px; }
+.vol-bar:nth-child(5) { height: 16px; }
+
+.vol-bar.active {
+    background: #ff0055;
+    box-shadow: 0 0 8px #ff0055;
+}
