@@ -186,10 +186,31 @@ img {
 
 .release-date {
     display: flex;
+    align-items: center;
     gap: 10px;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     margin: 20px 0 15px 0;
+    padding: 0 4px;
+}
+
+.cyber-download-btn {
+    color: #ff0055;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.cyber-download-btn .download-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.cyber-download-btn:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 6px #ff0055);
+    color: #fff;
 }
 
 #lyrics {
@@ -599,7 +620,7 @@ transition: all 0.2s ease;
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.2s ease;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .cyber.btn-tracks:hover {
