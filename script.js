@@ -12,6 +12,9 @@ const timeCurrent = document.getElementById('time-current');
 const timeTotal = document.getElementById('time-total');
 const tracklistBtn = document.getElementById('tracklist-toggle');
 const tracklistDropdown = document.getElementById('tracklist-dropdown');
+const listEl = document.getElementById('tracks-vector-list');
+const searchInput = document.getElementById('track-search');
+const filtersBtns = document.querySelectorAll('filter-btn');
 
 let isUserScrolling = false;
 let scrollTimeout;
@@ -246,8 +249,41 @@ tracklistBtn.addEventListener('click', (e) => {
     tracklistDropdown.classList.toggle('open');
 });
 
-document.addEventListener('clicl', (e) => {
+document.addEventListener('click', (e) => {
     if (!tracklistDropdown.contains(e.target) && e.target !== tracklistBtn) {
         tracklistDropdown.classList.remove('open');
     }
 });
+
+const testTracks = [
+    { id: 1, title: "Ненавижу быть собой", artist: "Три дня дождя", category: "album" },
+    { id: 2, title: "Перезаряжай", artist: "Три дня дождя", category: "album" },
+    { id: 3, title: "001", artist: "Три дня дождя", category: "single" },
+    { id: 4, title: "Выдыхай", artist: "Три дня дождя", category: "feat" }
+];
+
+function reanderTracks(filterCat = 'all', searchQuery = '') {
+    listEl.innerHTML = '';
+
+    tracksData
+    .filter(t => (filterCat === 'all' || t.cat === filterCat) && t.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    .forEach(t => {
+        const li = document.createElement('li');
+    li.className = 'track-item';
+    li.textContent = t.title;
+    listEl.appendChild(li);
+    });
+}
+
+searchInput.addEventListener('input', (e) => {
+    const activeCat = document.querySelector('.filter-btn.active').dataset.cat;
+    reanderTracks(activeCat, e.target.value);
+});
+
+filtersBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    filtersBtns.forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    reanderTracks(e.target.dataset.cat, searchInput.value);
+}));
+
+reanderTracks();

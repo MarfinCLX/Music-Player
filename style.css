@@ -601,7 +601,7 @@ transition: all 0.2s ease;
     background: #ff0055;
     box-shadow: 0 0 8px #ff0055;
 }
-
+ 
 .header-menu-container {
     position: relative;
 }
@@ -644,7 +644,7 @@ transition: all 0.2s ease;
     border: 1px solid #ff0055;
     box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
     padding: 12px;
-    z-index: 9999;
+    z-index: 1000;
     display: none;
 }  
 
@@ -662,6 +662,8 @@ transition: all 0.2s ease;
 
 .tracks-vector-list {
     list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .track-item {
@@ -674,7 +676,12 @@ transition: all 0.2s ease;
     transition: all 0.15s;
 }
 
-.track-item:hover, .track-item:active {
+.track-item:hover {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+/* .track-item:hover,*/ .track-item:active {
     background: rgba(255, 0, 85, 0.15);
     border-left: 2px solid #ff0055;
     padding-left: 10px;
@@ -687,3 +694,33 @@ transition: all 0.2s ease;
     font-family: monospace;
     cursor: not-allowed;
 }
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.category-filters {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.filter.btn {
+    flex: 1;
+    background: transparent;
+    border: 1px solid #444;
+    color: #888;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.filter.btn.active {
+    border-color: #8c1c38;
+    color: #fff;
+}   

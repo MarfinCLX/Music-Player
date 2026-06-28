@@ -30,10 +30,16 @@
             </button>
             <div id="tracklist-dropdown" class="cyber-dropdown">
                 <div class="dropdown-header">//SELECT_TRACK_CORE</div>
-                <ul class="tracks-vector-list">
-                    <li class="track-item active">Ненавижу быть собой</li>
-                    <li class="track-item-lock">Заперто // Скоро...</li>
-                </ul>
+                <div class="search box">
+                    <input type="text" id="search-input" placeholder="Search...">
+                </div>
+                <div class="category-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Albums</button>
+                    <button class="filter-btn">Singles</button>
+                    <button class="filter-btn">Feats</button>
+                </div>
+                <ul id="tracks-vector-list" class="tracks-vector-list"></ul>
         </div>
         </div>
         </nav>
