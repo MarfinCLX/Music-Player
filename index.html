@@ -30,10 +30,16 @@
             </button>
             <div id="tracklist-dropdown" class="cyber-dropdown">
                 <div class="dropdown-header">//SELECT_TRACK_CORE</div>
-                <ul class="tracks-vector-list">
-                    <li class="track-item active">Ненавижу быть собой</li>
-                    <li class="track-item-lock">Заперто // Скоро...</li>
-                </ul>
+                <div class="search-box">
+                    <input type="text" id="input-search" placeholder="Search...">
+                </div>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="album">Albums</button>
+                    <button class="filter-btn" data-category="single">Singles</button>
+                    <button class="filter-btn" data-category="feat">Feats</button>
+                </div>
+                <ul id="tracks-vector-list" class="tracks-vector-list"></ul>
         </div>
         </div>
         </nav>
@@ -43,7 +49,7 @@
     <section class="hero-gradient">
         <div class="page-container">
             <div class="image">
-        <img src="images/tdd_i_hate_being_me.png" alt="Cover art for Ненавижу быть собой (I Hate Being Me) by Три дня дождя (TDD)">
+        <img src="assets/tdd_i_hate_being_me.png" alt="Cover art for Ненавижу быть собой (I Hate Being Me) by Три дня дождя (TDD)">
         </div>
         <div class="song-info">
             <div class="titles-block">
@@ -181,6 +187,7 @@
     <p class="lyrics-line" data-start="127.35">Ненавижу быть собой</p>
     <br>
      <p class="lyrics-part-title">[Аутро]</p>
+     <p class="lyrics-line music-icon" data-start="131.75">♫</p>
     <p class="lyrics-line" data-start="163.9">Вспоминаю запах женщин, которых любил</p>
     <p class="lyrics-line" data-start="167.45">Между нами было всё, что только можно вообразить</p>
     <p class="lyrics-line" data-start="171.2">За стенами было слышно, как мы ссорились без сил</p>
@@ -208,6 +215,7 @@
     <footer>
         <p>&copy; 2026 MARFIN. All right reserved.</p>
     </footer>
+    <script src="tracks.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

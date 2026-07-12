@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', () => {
+
 const lines = document.querySelectorAll('.lyrics-line');
 const volBars = document.querySelectorAll('.vol-bar');
 const audio = document.querySelector('audio');
@@ -12,6 +14,10 @@ const timeCurrent = document.getElementById('time-current');
 const timeTotal = document.getElementById('time-total');
 const tracklistBtn = document.getElementById('tracklist-toggle');
 const tracklistDropdown = document.getElementById('tracklist-dropdown');
+const listEl = document.getElementById('tracks-vector-list');
+const searchInput = document.getElementById('input-search');
+const filtersBtns = document.querySelectorAll('.filter-btn');
+const previewAudio = new Audio();
 
 let isUserScrolling = false;
 let scrollTimeout;
@@ -246,8 +252,64 @@ tracklistBtn.addEventListener('click', (e) => {
     tracklistDropdown.classList.toggle('open');
 });
 
-document.addEventListener('clicl', (e) => {
+document.addEventListener('click', (e) => {
     if (!tracklistDropdown.contains(e.target) && e.target !== tracklistBtn) {
         tracklistDropdown.classList.remove('open');
     }
+});
+
+function renderTracks(filterCat = 'all', searchQuery = '') {
+    listEl.innerHTML = '';
+
+    testTracks
+            .filter(t => {
+                const matchesCategory = (filterCat === 'all' || t.category === filterCat);
+                const matchesSearch = t.title.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            })
+
+            .forEach(t => {
+                const li = document.createElement('li');
+                 li.className = 'track-card';
+                li.innerHTML = `
+                <img src="${t.cover}" class="track-cover"alt="cover">
+                <div class="track-info">
+                    <h3 class="track-title">${t.title}</h3>
+                    <p class="track-artist">${t.artist}</p>
+                </div>
+                `;
+
+                li.addEventListener('click', () => {
+                    console.log(`Clicked on track: ${t.title}`);
+                });
+
+                const coverImg = li.querySelector('.track-cover');
+                coverImg.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    previewAudio.src = t.preview || t.audio;
+                    previewAudio.play();
+                    console.log(`Previewing track: ${t.title}`);
+                });
+                listEl.appendChild(li);
+            });
+        }
+
+searchInput.addEventListener('input', (e) => {
+    const activeCat = document.querySelector('.filter-btn.active').dataset.category;
+    renderTracks(activeCat, e.target.value);
+});
+
+filtersBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        filtersBtns.forEach(b => b.classList.remove('active'));
+
+        e.target.classList.add('active');
+    
+        const cat = e.target.getAttribute('data-category');
+        renderTracks(cat, searchInput.value);
+    })
+})
+
+renderTracks();
+
 });
