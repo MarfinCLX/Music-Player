@@ -15,9 +15,14 @@ const timeTotal = document.getElementById('time-total');
 const tracklistBtn = document.getElementById('tracklist-toggle');
 const tracklistDropdown = document.getElementById('tracklist-dropdown');
 const listEl = document.getElementById('tracks-vector-list');
+<<<<<<< HEAD
 const searchInput = document.getElementById('input-search');
 const filtersBtns = document.querySelectorAll('.filter-btn');
 const previewAudio = new Audio();
+=======
+const searchInput = document.getElementById('track-search');
+const filtersBtns = document.querySelectorAll('filter-btn');
+>>>>>>> f88f5272e69db8634bd76fdec14bf0cb043af510
 
 let isUserScrolling = false;
 let scrollTimeout;
@@ -258,6 +263,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
+<<<<<<< HEAD
 function renderTracks(filterCat = 'all', searchQuery = '') {
     listEl.innerHTML = '';
 
@@ -313,3 +319,37 @@ filtersBtns.forEach(btn => {
 renderTracks();
 
 });
+=======
+const testTracks = [
+    { id: 1, title: "Ненавижу быть собой", artist: "Три дня дождя", category: "album" },
+    { id: 2, title: "Перезаряжай", artist: "Три дня дождя", category: "album" },
+    { id: 3, title: "001", artist: "Три дня дождя", category: "single" },
+    { id: 4, title: "Выдыхай", artist: "Три дня дождя", category: "feat" }
+];
+
+function reanderTracks(filterCat = 'all', searchQuery = '') {
+    listEl.innerHTML = '';
+
+    tracksData
+    .filter(t => (filterCat === 'all' || t.cat === filterCat) && t.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    .forEach(t => {
+        const li = document.createElement('li');
+    li.className = 'track-item';
+    li.textContent = t.title;
+    listEl.appendChild(li);
+    });
+}
+
+searchInput.addEventListener('input', (e) => {
+    const activeCat = document.querySelector('.filter-btn.active').dataset.cat;
+    reanderTracks(activeCat, e.target.value);
+});
+
+filtersBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    filtersBtns.forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    reanderTracks(e.target.dataset.cat, searchInput.value);
+}));
+
+reanderTracks();
+>>>>>>> f88f5272e69db8634bd76fdec14bf0cb043af510
