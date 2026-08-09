@@ -1,232 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TDD-i-hate-being-me-music-player</title>
-     <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="landing.css">
+<title>MARFIN</title>
 </head>
 <body>
-    <canvas id="visualizer"></canvas>
-    <div class="hero-section">
-    <header>
-        <div class="header-container">
-        <h2 class="brand">MARFIN</h2>
-        <div class="navigation-container">
-       <nav>
-            <a href="#lyrics">Lyrics</a>
-            <a href="#about">About</a>
-        <div class="header-menu-container">
-           <button id="tracklist-toggle" class="cyber-btn-tracks">
-            <svg class="cyber-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
-                <line x1="8" y1="6" x2="21" y2="6"></line>
-                <line x1="8" y1="12" x2="21" y2="12"></line>
-                <line x1="8" y1="18" x2="21" y2="18"></line>
-                <rect x="3" y="5" width="2" height="2" fill="currentColor" stroke="none"></rect>
-                <rect x="3" y="11" width="2" height="2" fill="currentColor" stroke="none"></rect>
-                <rect x="3" y="17" width="2" height="2" fill="currentColor" stroke="none"></rect>
+    <div class="landing">
+        <h1 class="brand brand-idle">MARFIN</h1>
+        <p class="tagline">Music player</p>
+        <div class="stats">
+            <div class="stat-block">
+                <span class="stat-number" id="stat-tracks">0</span>
+                <span class="stat-label">Треков</span>
+            </div>
+            <div class="stat-block">
+                <span class="stat-number" id="stat-artists">0</span>
+                <span class="stat-label">Исполнителей</span>
+            </div>
+        </div>
+        <ul class="artists-list" id="artists-list"></ul>
+        <a href="catalog.html" class="enter-btn">
+            Войти
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
             </svg>
-            <span class="btn-text">TRACKS</span>
-            </button>
-            <div id="tracklist-dropdown" class="cyber-dropdown">
-                <div class="dropdown-header">//SELECT_TRACK_CORE</div>
-<<<<<<< HEAD
-                <div class="search-box">
-                    <input type="text" id="input-search" placeholder="Search...">
-                </div>
-                <div class="category-filters">
-                    <button class="filter-btn active" data-category="all">All</button>
-                    <button class="filter-btn" data-category="album">Albums</button>
-                    <button class="filter-btn" data-category="single">Singles</button>
-                    <button class="filter-btn" data-category="feat">Feats</button>
-=======
-                <div class="search box">
-                    <input type="text" id="search-input" placeholder="Search...">
-                </div>
-                <div class="category-filters">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Albums</button>
-                    <button class="filter-btn">Singles</button>
-                    <button class="filter-btn">Feats</button>
->>>>>>> f88f5272e69db8634bd76fdec14bf0cb043af510
-                </div>
-                <ul id="tracks-vector-list" class="tracks-vector-list"></ul>
-        </div>
-        </div>
-        </nav>
-        </div>
-        </div>
-    </header>
-    <section class="hero-gradient">
-        <div class="page-container">
-            <div class="image">
-        <img src="assets/tdd_i_hate_being_me.png" alt="Cover art for Ненавижу быть собой (I Hate Being Me) by Три дня дождя (TDD)">
-        </div>
-        <div class="song-info">
-            <div class="titles-block">
-            <h1>Ненавижу быть собой (I Hate Being Me)</h1>
-            <p class="band-name">Три дня дождя (TDD)</p>
-            </div>
-            <div class="producers-block">
-                <p class="label">Producers</p>
-                <p class="names">Глеб Викторов & Slem & LYRIQ</p>
-            </div>
-            <audio controls id="audio">
-                <source src="music/ТДД - ненавижу быть собой.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <div class="player-frame">
-            <div class="custom-player">
-                <div class="tech-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="player-controls">
-                    <button id="play-pause-btn" class="control-btn" aria-label="Play/Pause">
-                        <svg id="icon-play" viewBox="0 0 24 24" width="24" height="24"> 
-                            <path d="M8 5v14l11-7z" fill="#ff0055"/>
-                        </svg> 
-                        <svg id="icon-pause" viewBox="0 0 24 24" width="24" height="24" style="display: none;">
-                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="#ff0055"/>
-                        </svg>
-                    </button>
-            </div>
-            <div class="volume-control">
-                <button id="volume-toggle" class="volume-icon-btn">
-                    <svg viewBox="0 0 24 24" width="18" height="18"> 
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="#ff0055"/> 
-                    </svg>
-                </button>
-                <div class="volume-steps">
-                    <span class="vol-bar active" data-level="0.2"></span>
-                    <span class="vol-bar active" data-level="0.4"></span>
-                    <span class="vol-bar active" data-level="0.6"></span>
-                    <span class="vol-bar" data-level="0.8"></span>
-                    <span class="vol-bar" data-level="1"></span>
-                </div>
-            </div>
-            <div class="timeline-container">
-                <span class="time-display time-current" id="time-current">00:00</span>
-                <div class="progress-bar" id="progress-bar">
-                    <div class="progress-filled" id="progress-filled"></div>
-                </div>
-                <span class="time-display time-total" id="time-total">00:00</span>
-                <div class="micro-equalizer">
-                    <span class="eq-bar" style="--h: 8px;"></span>
-                    <span class="eq-bar" style="--h: 12px;"></span>
-                    <span class="eq-bar" style="--h: 16px;"></span>
-                    <span class="eq-bar" style="--h: 20px;"></span>
-                </div>
-            </div>
-            </div>
-            </div>
-            <div class="release-date">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days-icon lucide-calendar-days">
-                <path d="M8 2v4"/>
-                <path d="M16 2v4"/>
-                <rect width="18" height="18" x="3" y="4" rx="2"/>
-                <path d="M3 10h18"/>
-                <path d="M8 14h.01"/>
-                <path d="M12 14h.01"/>
-                <path d="M16 14h.01"/>
-                <path d="M8 18h.01"/>
-                <path d="M12 18h.01"/>
-                <path d="M16 18h.01"/>
-                </svg>
-                <span> Oct 20, 2023 </span>
-                <a href="music/ТДД - ненавижу быть собой.mp3" download="music/ТДД - Ненавижу быть собой.mp3" class="cyber-download-btn" title="Скачать трек">
-                    <svg class="download-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 3v13" />
-                        <path d="M7 11l5 5 5-5" />
-                        <path d="M4 20h16" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-        </div>
-        </section>
-        </div>
-    <main>
-        <section id="lyrics">
-            <h2 class="lyrics-heading">[Текст песни Три дня дождя (TDD) «Ненавижу быть собой (I Hate Being Me)»] </h2>
-            <br>
-            <div class="lyrics-container" id="lyrics-container">
-     <p class="lyrics-part-title">[Куплет 1] </p>
-    <p class="lyrics-line" data-start="4.4">Меня уязвило, что ты</p>
-    <p class="lyrics-line" data-start="8.7">Порой не остаёшься собой</p>
-    <p class="lyrics-line" data-start="12.17">Я не боюсь высоты</p>
-    <p class="lyrics-line" data-start="15.6">До тех пор, пока ты рядом со мной</p>
-    <p class="lyrics-line" data-start="20.2">Седые волосы, плохой парфюм</p>
-    <p class="lyrics-line" data-start="24.2">Уныние в голосе, я тону</p>
-    <p class="lyrics-line" data-start="28.2">Оставь хотя бы чёрный кардиган</p>
-    <p class="lyrics-line" data-start="32.4">Который мне так нравился, когда был пьян</p>
-    <br>
-     <p class="lyrics-part-title">[Предприпев]</p>
-    <p class="lyrics-line" data-start="35.7">Вспоминаю запах женщин, которых любил</p>
-    <p class="lyrics-line" data-start="39">Между нами было всё, что только можно вообразить</p>
-    <p class="lyrics-line" data-start="43">За стенами было слышно, как мы ссорились без сил</p>
-    <p class="lyrics-line" data-start="47">В те моменты я жалел, что неспособен быть один</p>
-    <br>
-     <p class="lyrics-part-title">[Припев]</p>
-    <p class="lyrics-line" data-start="51.4">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="55.2">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="59.1">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="63.4">Ненавижу быть собой</p>
-    <br>
-     <p class="lyris-part-title">[Куплет 2]</p>
-    <p class="lyrics-line" data-start="68.2">Я слил всё, что было внутри</p>
-    <p class="lyrics-line" data-start="72.2">Прости, но это сильно болит</p>
-    <p class="lyrics-line" data-start="76.15">Следы помады на зеркалах</p>
-    <p class="lyrics-line" data-start="80.1">Прости, что я порой бываю вовсе невыносим</p>
-    <p class="lyrics-line" data-start="84.1">Я буду ждать тех сообщений от знакомых номеров</p>
-    <p class="lyrics-line" data-start="88.47">Я не люблю ложных значений, я к такому не готов</p>
-    <p class="lyrics-line" data-start="92.5">Оставь хотя бы чёрный кардиган</p>
-    <p class="lyrics-line" data-start="96.6">Который мне так нравился, когда был пьян</p>
-    <br>
-     <p class="lyrics-part-title">[Предприпев]</p>
-    <p class="lyrics-line" data-start="99.8">Вспоминаю запах женщин, которых любил</p>
-    <p class="lyrics-line" data-start="103.38">Между нами было всё, что только можно вообразить</p>
-    <p class="lyrics-line" data-start="107.398">За стенами было слышно, как мы ссорились без сил</p>
-    <p class="lyrics-line" data-start="111.265">В те моменты я жалел, что неспособен быть один</p>
-    <br>
-     <p class="lyrics-part-title">[Припев]</p>
-    <p class="lyrics-line" data-start="115.38">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="119.41">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="123.35">Ненавижу быть собой</p>
-    <p class="lyrics-line" data-start="127.35">Ненавижу быть собой</p>
-    <br>
-     <p class="lyrics-part-title">[Аутро]</p>
-     <p class="lyrics-line music-icon" data-start="131.75">♫</p>
-    <p class="lyrics-line" data-start="163.9">Вспоминаю запах женщин, которых любил</p>
-    <p class="lyrics-line" data-start="167.45">Между нами было всё, что только можно вообразить</p>
-    <p class="lyrics-line" data-start="171.2">За стенами было слышно, как мы ссорились без сил</p>
-    <p class="lyrics-line" data-start="175.2">В те моменты я жалел, что неспособен быть один</p>
-                </div>
-        </section>
-        </main>
-        <section id="about" class="about-song">
-            <svg class="about-song-neon-svg" xmlns="http://www.w3.org/2000/svg">
-                <path class="about-song-neon-path path-1" />
-                <path class="about-song-neon-path path-2" />
-            </svg>
-                <h2 class="about-song-title">About</h2>
-            <div class="about-song-container">
-            <p class="about-song-subtitle">Song bio</p>
-            <p class="about-song-text">Песня «Ненавижу быть собой (I Hate Being Me)» -  это глубоко личная композиция из альбома Melancholia (2023). 
-               Альбом писался в рехабе, где фронтмен Глеб Викторов проходил лечение от зависимостей. Трек отражает его личный кризис, депрессию и тему созависимости. 
-            </p>
-            <p class="about-song-text">
-        Глеб пишет песню о человеке, который был зависим от бывших партнеров и буквально фанател по их вещам и запахам (например, оставляя себе её чёрный кардиган). 
-        Лирический герой понимает, что эта болезненная привязанность полностью уничтожает его изнутри, и именно за эту слабость он и ненавидит самого себя.
-            </p>
+        </a>
     </div>
-    </section>
-    <footer>
-        <p>&copy; 2026 MARFIN. All right reserved.</p>
-    </footer>
     <script src="tracks.js"></script>
-    <script src="script.js"></script>
+    <script src="landing.js"></script>
 </body>
 </html>
