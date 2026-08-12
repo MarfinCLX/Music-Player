@@ -10,17 +10,17 @@ Instead of a generic, boring media player, this project focuses on a deeply imme
 
 🚀 Key Features
 
-- Multi-page flow**: `landing.html` → `catalog.html` → `player.html?id=N`, with a page loader (staged progress bar) softening every transition.
-- Data-driven catalog**: all track metadata, lyrics, and bios live in `tracks.js` — the player, catalog page, and landing stats all read from this single source of truth.
-- Dynamic player template**: `player.html` is not tied to any one song — it reads a track `id` from the URL and renders the cover, title, producers, lyrics (with timestamped highlighting), and bio for that track.
-- Folder-style browsing**: the TRACKS search menu groups Albums by album and Singles/Feats by artist, drilling down into each group with a back button — instead of one long flat list.
-- Track previews**: clicking a cover in the TRACKS menu plays a short preview with a circular progress ring (Spotify-style), correctly pausing/resuming the main player instead of overlapping audio.
-- Audio API Event-Driven Theme Switcher**: the interface dynamically toggles between light and dark modes by listening to the native HTML5 `<audio>` `play`/`pause` states.
-- Bass-reactive canvas visualizer**: built on the Web Audio API's `AnalyserNode`, reacting to bass, mid and treble frequency bands independently.
-- Animated neon UI borders**: header, hero/player section, About block, and footer all get a "flowing then breathing" neon outline while a track is playing.
-- Custom Audio Controls** (no default browser controls): play/pause toggle, real-time elapsed/remaining time, a scrubbing progress bar, and a stepped volume control.
-- "Coming soon" locked state**: tracks without an uploaded audio file automatically render as locked/disabled everywhere (TRACKS menu, catalog) until filled in.
-- Author tooling**: `add-track.html` (standalone track-data generator) and `extract-track.js` (console script to migrate legacy hardcoded pages into the JSON schema) — used to grow the catalog without hand-editing JSON by hand.
+- Multi-page flow: `landing.html` → `catalog.html` → `player.html?id=N`, with a page loader (staged progress bar) softening every transition.
+- Data-driven catalog: all track metadata, lyrics, and bios live in `tracks.js` — the player, catalog page, and landing stats all read from this single source of truth.
+- Dynamic player template: `player.html` is not tied to any one song — it reads a track `id` from the URL and renders the cover, title, producers, lyrics (with timestamped highlighting), and bio for that track.
+- Folder-style browsing: the TRACKS search menu groups Albums by album and Singles/Feats by artist, drilling down into each group with a back button — instead of one long flat list.
+- Track previews: clicking a cover in the TRACKS menu plays a short preview with a circular progress ring (Spotify-style), correctly pausing/resuming the main player instead of overlapping audio.
+- Audio API Event-Driven Theme Switcher: the interface dynamically toggles between light and dark modes by listening to the native HTML5 `<audio>` `play`/`pause` states.
+- Bass-reactive canvas visualizer: built on the Web Audio API's `AnalyserNode`, reacting to bass, mid and treble frequency bands independently.
+- Animated neon UI borders: header, hero/player section, About block, and footer all get a "flowing then breathing" neon outline while a track is playing.
+- Custom Audio Controls (no default browser controls): play/pause toggle, real-time elapsed/remaining time, a scrubbing progress bar, and a stepped volume control.
+- "Coming soon" locked state: tracks without an uploaded audio file automatically render as locked/disabled everywhere (TRACKS menu, catalog) until filled in.
+- Author tooling: `add-track.html` (standalone track-data generator) and `extract-track.js` (console script to migrate legacy hardcoded pages into the JSON schema) — used to grow the catalog without hand-editing JSON by hand.
 
 🛠 Tech Stack & Methodologies
 
