@@ -517,7 +517,7 @@ function createTrackCardLi(t) {
             <p class="track-artist">${t.artist}</p>
         </div>
     `;
-
+ 
     li.addEventListener('click', () => {
         window.location.href = `player.html?id=${t.id}`;
     });
