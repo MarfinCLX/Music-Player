@@ -184,3 +184,49 @@
     .enter-btn:hover svg {
         transform: translateX(4px);
     }
+
+@media (max-width: 768px) {
+    .landing {
+        gap: 26px;
+    }
+
+    .stats {
+        gap: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing {
+        gap: 22px;
+    }
+
+    .tagline {
+        font-size: 11px;
+    }
+
+    .stats {
+        gap: 30px;
+    }
+
+    .stat-number {
+        font-size: 26px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .artists-list {
+        max-width: 300px;
+        gap: 8px 14px;
+    }
+
+    .artists-list li {
+        font-size: 12px;
+    }
+
+    .enter-btn {
+        padding: 12px 26px;
+        font-size: 12px;
+    }
+}

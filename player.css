@@ -970,3 +970,178 @@ body.bg-playing .hero-neon-path {
         neonDoubleFlow 5s cubic-bezier(0.3, 1, 0.6, 1) forwards,
         neonPulseGlow 2.6s ease-in-out 5s infinite;
 }
+
+@media (max-width: 1024px) {
+    .page-container {
+        padding-left: 6%;
+        padding-right: 6%;
+        gap: 30px;
+    }
+
+    img {
+        width: 240px;
+        height: 240px;
+    }
+
+    .player-frame {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-wrap: wrap;
+        padding: 10px 0;
+        gap: 10px;
+    }
+
+    .brand {
+        font-size: 28px;
+        padding-left: 14px;
+    }
+
+    nav a {
+        margin: 0 14px;
+        font-size: 14px;
+    }
+
+    .page-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 25px 20px;
+        gap: 20px;
+    }
+
+    img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .song-info {
+        align-items: center;
+    }
+
+    .titles-block,
+    .producers-block {
+        align-items: center;
+    }
+
+    .player-frame {
+        width: 100%;
+    }
+
+    .custom-player {
+        flex-wrap: wrap;
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .timeline-container {
+        order: 3;
+        width: 100%;
+    }
+
+    .micro-equalizer {
+        display: none;
+    }
+
+    .cyber-dropdown {
+        width: calc(100vw - 40px);
+        max-width: 320px;
+        right: -10px;
+    }
+
+    #visualizer,
+    canvas {
+        width: 340px;
+        height: 340px;
+    }
+
+    .lyrics-container {
+        padding: 0 16px;
+    }
+
+    .lyrics-line {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .about-song-container {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand {
+        font-size: 22px;
+        padding-left: 10px;
+    }
+
+    nav a {
+        margin: 0 8px;
+        font-size: 12px;
+    }
+
+    .btn-text {
+        display: none; 
+    }
+
+    img {
+        width: 170px;
+        height: 170px;
+    }
+
+    .titles-block h1 {
+        font-size: 22px;
+    }
+
+    .band-name {
+        font-size: 18px;
+    }
+
+    .custom-player {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .control-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .volume-control {
+        display: none; 
+    }
+
+    .time-display {
+        font-size: 12px;
+        min-width: 38px;
+    }
+
+    #visualizer,
+    canvas {
+        width: 260px;
+        height: 260px;
+    }
+
+    .about-song-title {
+        font-size: 24px;
+    }
+
+    .about-song-text {
+        font-size: 14px;
+    }
+
+    .cyber-dropdown {
+        width: calc(100vw - 24px);
+        right: -20px;
+        padding: 12px;
+    }
+
+    .track-cover-wrap,
+    .track-card .track-cover {
+        width: 60px;
+        height: 60px;
+    }
+}
